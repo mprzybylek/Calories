@@ -6,20 +6,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CaloriesPage.Models;
+using CaloriesPage.Database;
 
 namespace CaloriesPage.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly CaloriesContext _ctx;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CaloriesContext ctx)
         {
             _logger = logger;
+            _ctx = ctx;
         }
 
         public IActionResult Index()
         {
+
+            if(!_ctx.Meals.Any())
+            {
+                Database.Entities.Meal meal = new Database.Entities.Meal
+                {
+                    Id = 1,
+                    Name = "Bigos"
+                };
+
+                _ctx.Meals.Add(meal);
+                _ctx.SaveChanges();
+            }
+
+
             return View();
         }
 

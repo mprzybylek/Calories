@@ -1,0 +1,16 @@
+﻿USE [CaloriesDB]
+GO
+
+/****** Object: Table [dbo].[Meals] Script Date: 2020-03-10 12:00:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Meals] (
+    [Id]   INT            NOT NULL,
+    [Name] NVARCHAR (MAX) NULL
+);
+
+
