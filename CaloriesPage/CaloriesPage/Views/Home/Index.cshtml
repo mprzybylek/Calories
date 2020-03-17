@@ -1,8 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using CaloriesPage.Database.Entities;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{ ViewBag.Title = "Menu"; }
+@model List<Meal>
+
+<h1>@ViewBag.Title</h1>
+<p>Meal list:</p>
+<ul>
+    @foreach (var meal in Model)
+    {
+        <li>@meal.Id : @meal.Name</li>
+    }
+
+</ul>

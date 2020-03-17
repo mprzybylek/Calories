@@ -24,20 +24,20 @@ namespace CaloriesPage.Controllers
         public IActionResult Index()
         {
 
-            if(!_ctx.Meals.Any())
-            {
-                Database.Entities.Meal meal = new Database.Entities.Meal
-                {
-                    Id = 1,
-                    Name = "Bigos"
-                };
+            //if(!_ctx.Meals.Any())
+            //{
+            //    Database.Entities.Meal meal = new Database.Entities.Meal
+            //    {
+            //        Id = 1,
+            //        Name = "Bigos"
+            //    };
 
-                _ctx.Meals.Add(meal);
-                _ctx.SaveChanges();
-            }
+            //    _ctx.Meals.Add(meal);
+            //    _ctx.SaveChanges();
+            //}
+            var meals = _ctx.Meals.ToList();
 
-
-            return View();
+            return View(meals);
         }
 
         public IActionResult Privacy()
