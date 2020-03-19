@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CaloriesPage.Models;
 using CaloriesPage.Database;
+using CaloriesPage.Helpers;
 
 namespace CaloriesPage.Controllers
 {
@@ -49,6 +50,12 @@ namespace CaloriesPage.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Presenter()
+        {
+            object @presenter = NameGenerator.GeneratePresenter();
+            return View(presenter);
         }
     }
 }
