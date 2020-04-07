@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CaloriesPage.Models;
 using CaloriesPage.Database;
 using CaloriesPage.Helpers;
+using CaloriesPage.Database.Entities;
 
 namespace CaloriesPage.Controllers
 {
@@ -41,10 +42,10 @@ namespace CaloriesPage.Controllers
             return View(meals);
         }
 
-        public IActionResult Privacy()
+       public IActionResult Privacy()
         {
             return View();
-        }
+        } 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -56,6 +57,17 @@ namespace CaloriesPage.Controllers
         {
             object @presenter = NameGenerator.GeneratePresenter();
             return View(presenter);
+        }
+
+        public IActionResult NewMeal(Meal meal)
+        {
+            if(meal.Name != null)
+            {
+                _ctx.Meals.Add(meal);
+                _ctx.SaveChanges();
+            }
+
+            return View();
         }
     }
 }

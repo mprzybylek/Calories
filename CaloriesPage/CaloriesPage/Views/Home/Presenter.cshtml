@@ -2,5 +2,13 @@
 @{ViewData["Title"] = "Presenter";}
 @model string 
 
+
 <h1>Todays Presenter is: @Model</h1>
 
+
+
+@using (Html.BeginForm())
+{
+    @*@Html.*@
+    <input onclick="location.href='@Url.Action("Presenter", "Home")'" type ="button" value="Generate"/>
+}

@@ -1,0 +1,16 @@
+﻿@using CaloriesPage.Database.Entities;
+
+@{ ViewBag.Title = "Add new meal"; }
+@model Meal
+
+<h1>@ViewBag.Title</h1>
+
+
+<br />
+@using (Html.BeginForm("NewMeal", "Home", FormMethod.Post,
+     new { style = "margin-right:100px; margin-top:50px; border-style:solid; border-color:red;" }))
+{
+    <div style="margin: 5px; display: inline;">@Html.Label("Meal name")</div>
+    <div style="margin: 5px; display: inline;">@Html.TextBoxFor(m => m.Name)</div>
+    <div style="margin: 5px; display: inline;"><input type="submit" value="Add Meal" /></div>
+}
