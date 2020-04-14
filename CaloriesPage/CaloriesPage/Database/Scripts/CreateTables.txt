@@ -1,4 +1,4 @@
-﻿USE [CaloriesDB]
+﻿USE [CaloriesPageDB]
 GO
 
 /****** Object: Table [dbo].[Meals] Script Date: 2020-03-10 12:00:00 ******/
@@ -8,8 +8,10 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE [dbo].[Meals]
+
 CREATE TABLE [dbo].[Meals] (
-    [Id]   INT            NOT NULL,
+    [Id]   INT           IDENTITY(1,1) NOT NULL,
     [Name] NVARCHAR (MAX) NULL
 );
 

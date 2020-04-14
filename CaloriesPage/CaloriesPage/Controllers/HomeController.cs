@@ -25,18 +25,6 @@ namespace CaloriesPage.Controllers
 
         public IActionResult Index()
         {
-
-            //if(!_ctx.Meals.Any())
-            //{
-            //    Database.Entities.Meal meal = new Database.Entities.Meal
-            //    {
-            //        Id = 1,
-            //        Name = "Bigos"
-            //    };
-
-            //    _ctx.Meals.Add(meal);
-            //    _ctx.SaveChanges();
-            //}
             var meals = _ctx.Meals.ToList();
 
             return View(meals);
@@ -59,12 +47,41 @@ namespace CaloriesPage.Controllers
             return View(presenter);
         }
 
+        [HttpGet]
+        public IActionResult NewMeal()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult NewMeal(Meal meal)
         {
-            if(meal.Name != null)
+            if(!string.IsNullOrEmpty(meal.Name))
             {
                 _ctx.Meals.Add(meal);
                 _ctx.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Value cannot be null or empty";
+            }
+
+            return View();
+        }
+
+        public IActionResult RemoveMeal(Meal meal)
+        {
+            if (meal.Name != null)
+            {
+                var meals = _ctx.Meals.Where(mealRemove => mealRemove.Name == meal.Name);
+                if (meals.Any())
+                {
+                    _ctx.RemoveRange(meals);
+                    _ctx.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View();
